@@ -1,0 +1,30 @@
+{
+  "name": "habit_tracking",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch src/index.ts",
+    "start": "node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bisruxa/Habit_Tracking.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bisruxa/Habit_Tracking/issues"
+  },
+  "homepage": "https://github.com/Bisruxa/Habit_Tracking#readme",
+  "description": "",
+  "dependencies": {
+    "custom-env": "^2.0.6",
+    "express": "^5.1.0",
+    "zod": "^4.0.17"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0"
+  }
+}
