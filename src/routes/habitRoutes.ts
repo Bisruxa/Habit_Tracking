@@ -1,5 +1,9 @@
 import { Router } from "express";
-
+import { validateBody } from "../middleware/validation.ts";
+import {z} from'zod'
+const createHabitSchema=z.object({
+  name:z.string()
+})
 const router = Router();
 
 // Habit-specific routes
@@ -7,7 +11,7 @@ router.get("/", (req, res) => {
   res.json({ message: "Get all habits" });
 });
 
-router.post("/", (req, res) => {
+router.post("/",validateBody(createHabitSchema), (req, res) => {
   res.status(201).json({ message: "Habit created" });
 });
 

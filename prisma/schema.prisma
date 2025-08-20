@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  firstName String
+  lastName  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  habits Habit[]
+}
+
+model Habit {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  description String?
+  frequency   Int
+  targetCount Int
+  isActive    Boolean @default(true)
+  createdAt   DateTime  @default(now())
+  UpdatedAT    DateTime  @updatedAt
+  userId      String
+  Owner       Users     @relation(fields: [userId], references: [id])
+  Entries     Entries[]
+}
+
+model Entries {
+  id         String @id @default(uuid())
+  note       String
+  createdAt  DateTime @default(now())
+  completion_date DateTime @default(now())
+  habitId    String
+  habit      Habit  @relation(fields: [habitId], references: [id])
+}
+model Tags {
+  id String @id @default(uuid())
+  name String
+  color String
+  createdAt  DateTime @default(now()) 
+}
