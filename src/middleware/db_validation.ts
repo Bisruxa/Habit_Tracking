@@ -14,10 +14,10 @@ export const loginSchema = z.object({
 export const createHabitSchema=z.object({
   name:z.string().min(1).max(100),
   description:z.string().max(500).optional(),
-  frequency:z.enum(['daily','weekly','monthly']),
+  frequency:z.number(),
   targetCount:z.number().min(1).optional(),
   isActive:z.boolean().optional(),
-  userId:z.string().uuid(),
+  // userId:z.string().uuid(),
 })
 
 export const createEntrySchema =z.object({

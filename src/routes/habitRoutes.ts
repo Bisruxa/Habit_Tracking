@@ -2,27 +2,18 @@ import { Router } from "express";
 import { validateBody } from "../middleware/validation.ts";
 import {z} from'zod'
 import { authenticateToken } from "../middleware/auth.ts";
-const createHabitSchema=z.object({
-  name:z.string()
-})
+import { createHabitSchema } from "../middleware/db_validation.ts";
+import { createHabit, getUserHabits, updateHabit } from "../controllers/habitController.ts";
+
 const router = Router();
 router.use(authenticateToken)
 // Habit-specific routes
-router.get("/", (req, res) => {
-  res.json({ message: "Get all habits" });
-});
+router.get("/", getUserHabits);
 
-router.post("/",validateBody(createHabitSchema), (req, res) => {
-  res.status(201).json({ message: "Habit created" });
-});
+router.post("/",validateBody(createHabitSchema), createHabit);
 
-// Habit completion routes
-router.post("/:id/complete", (req, res) => {
-  res.json({ message: `Mark habit ${req.params.id} complete` });
-});
+router.patch('/:id',updateHabit)
 
-router.get("/:id/stats", (req, res) => {
-  res.json({ message: `Get stats for habit ${req.params.id}` });
-});
+
 
 export default router;
