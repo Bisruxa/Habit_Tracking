@@ -1,6 +1,6 @@
 import {SignJWT} from 'jose'
 import { createSecretKey } from 'crypto'
-import env from '../../env.js'
+import env from '../../env.ts'
 
 export interface JwtPayload{
  id :string

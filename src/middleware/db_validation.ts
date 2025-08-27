@@ -1,10 +1,15 @@
 import {z} from 'zod'
 export const createUserSchema = z.object ({
-  email:z.string().email(),
+  email:z.string().email('Invalid email'),
   password:z.string().min(8),
  username:z.string().min(3),
  firstName:z.string().max(50).optional(),
  lastName:z.string().max(50).optional(),
+})
+export const loginSchema = z.object({
+  email:z.string().email('Invalid email'),
+  password:z.string().min(8),
+
 })
 export const createHabitSchema=z.object({
   name:z.string().min(1).max(100),

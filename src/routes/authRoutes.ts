@@ -1,15 +1,13 @@
 import { Router } from "express";
-
+import {login, register} from "../controllers/authController.ts"
+import { validateBody } from "../middleware/validation.ts";
+import { createUserSchema, loginSchema } from "../middleware/db_validation.ts";
 const router = Router();
 
 // Authentication routes
-router.post("/register", (req, res) => {
-  res.status(201).json({ message: "User registered" });
-});
+router.post("/register", validateBody(createUserSchema),register);
 
-router.post("/login", (req, res) => {
-  res.json({ message: "User logged in" });
-});
+router.post("/login", validateBody(loginSchema),login);
 
 router.post("/logout", (req, res) => {
   res.json({ message: "User logged out" });

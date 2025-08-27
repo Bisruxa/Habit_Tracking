@@ -1,45 +1,36 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    // File Layout
+    // File layout (optional, if you plan to build with tsc later)
     // "rootDir": "./src",
     // "outDir": "./dist",
 
-    // Environment Settings
-    // See also https://aka.ms/tsconfig/module
+    // ✅ Modern ESM in Node
     "module": "nodenext",
     "target": "esnext",
-   
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
 
-    // Other Outputs
+    // ✅ Keep your written import paths exactly (so .ts works)
+    "verbatimModuleSyntax": true,
+
+    // ✅ Useful for debugging and library builds
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
 
-    // Stricter Typechecking Options
+    // ✅ Stricter type safety
+    "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
 
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
-
-    // Recommended Options
-    "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+    // ✅ Required for Node + TS
+    "types": ["node"],
     "skipLibCheck": true,
-    "types": ["node"]
+
+    // ✅ Good defaults for React projects too
+    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noUncheckedSideEffectImports": true,
+    "allowImportingTsExtensions":true,
+    "noEmit":true
   }
 }
